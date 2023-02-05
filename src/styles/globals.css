@@ -11,7 +11,7 @@ body::-webkit-scrollbar {
 }
 
 .wrapper {
-  transition: 1s cubic-bezier(0.65, 0, 0.35, 1) !important;
+  transition: 0.9s cubic-bezier(0.65, 0, 0.35, 1) !important;
 }
 
 .disable-scroll {

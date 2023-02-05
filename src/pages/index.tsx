@@ -1,6 +1,15 @@
 import React from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+
 export default function Home() {
+  const bgColors = [
+    "bg-rose-200",
+    "bg-green-200",
+    "bg-yellow-200",
+    "bg-slate-200",
+    "bg-cyan-200",
+    "bg-amber-200",
+  ];
   const [index, setIndex] = React.useState(0);
 
   const scrollUp = React.useRef(false);
@@ -14,7 +23,7 @@ export default function Home() {
 
     setTimeout(() => {
       document.body.classList.remove("disable-scroll");
-    }, 1050);
+    }, 950);
 
     // check if the scroll is going up or down
     if (value > scrollY.getPrevious()) {
@@ -32,43 +41,31 @@ export default function Home() {
 
   return (
     <motion.main className="h-[900vh] no-scroll">
-      <div className="fixed inset-0 flex flex-col">
+      <div className="fixed inset-0 -z-[1] flex flex-col">
+        <h1 className="fixed inset-0 -z-[1]  h-screen w-screen grid place-items-center text-[25vw] text-gray-100 font-extrabold">
+          section
+        </h1>
         <div
           className={`wrapper`}
           style={{
-            transform: `translateY(-${index * 100}vh)`,
+            transform: `translate3d(0, -${index * 100}vh, 0)`,
           }}
         >
-          <motion.div className="h-screen w-screen bg-rose-200 flex justify-center items-center">
-            <div className="w-48 h-96 bg-sky-200 flex items-center justify-center text-9xl font-bold">
-              ONE
-            </div>
-          </motion.div>
-          <motion.div className="h-screen w-screen bg-green-200 flex justify-center items-center">
-            <div className="w-48 h-96 bg-yellow-200 flex items-center justify-center text-9xl font-bold">
-              TWO
-            </div>
-          </motion.div>
-          <motion.div className="h-screen w-screen bg-yellow-200 flex justify-center items-center">
-            <div className="w-48 h-96 bg-green-200 flex items-center justify-center text-9xl font-bold">
-              THREE
-            </div>
-          </motion.div>
-          <motion.div className="h-screen w-screen  bg-slate-200 flex  justify-center items-center">
-            <div className="w-48 h-96 bg-rose-200 flex items-center justify-center text-9xl font-bold">
-              FOUR
-            </div>
-          </motion.div>
-          <motion.div className="h-screen w-screen  bg-cyan-200 flex  justify-center items-center">
-            <div className="w-48 h-96 bg-indigo-200 flex items-center justify-center text-9xl font-bold">
-              FIVE
-            </div>
-          </motion.div>
-          <motion.div className="h-screen w-screen  bg-amber-200 flex  justify-center items-center">
-            <div className="w-48 h-96 bg-emerald-200 flex items-center justify-center text-9xl font-bold">
-              SIX
-            </div>
-          </motion.div>
+          {bgColors.map((color, i) => (
+            <motion.div
+              key={color}
+              className="h-screen w-screen rea z-10 px-20 text-9xl font-extrabold flex justify-between items-center"
+            >
+              DIV <br></br>#{i + 1}
+              <motion.div
+                initial={{ scaleY: 0.7, x: 50 }}
+                whileInView={{ scaleY: 1, scaleX: 0.8, x: 0 }}
+                transition={{ duration: .8, ease: "easeInOut" }}
+                viewport={{ margin: "100px" }}
+                className={`w-[50vw] h-[70vh] ${color}`}
+              ></motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </motion.main>
